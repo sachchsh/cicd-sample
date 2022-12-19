@@ -1,6 +1,18 @@
 steps:  
-
- - name: gcr.io/cloud-builders/git
+  - name: gcr.io/cloud-builders/git
+    args:
+      - '-c'
+      - |
+        echo "$$SSH_KEY" >> /root/.ssh/id_rsa
+        chmod 400 /root/.ssh/id_rsa
+        cp known_hosts.github /root/.ssh/known_hosts
+    entrypoint: bash
+    secretEnv:
+      - SSH_KEY
+    volumes:
+      - name: ssh
+        path: /root/.ssh
+- name: gcr.io/cloud-builders/git
     args:
       - clone
       - '--recurse-submodules'
@@ -8,20 +20,7 @@ steps:
     volumes:
       - name: ssh
         path: /root/.ssh
-  - name: gcr.io/cloud-builders/git
-    args:
-      - '-c'
-      - |
-        echo "$$SSH_KEY" >> /root/.ssh/id_rsa
-        chmod 400 /root/.ssh/id_rsa
-        cp /root/.ssh/id_rsa /root/.ssh/known_hosts
-    entrypoint: bash
-    secretEnv:
-      - SSH_KEY
-    volumes:
-      - name: ssh
-        path: /root/.ssh
-       
+        
  - name: gcr.io/cloud-builders/git
     args:
       - checkout
