@@ -14,7 +14,7 @@ steps:
       - |
         echo "$$SSH_KEY" >> /root/.ssh/id_rsa
         chmod 400 /root/.ssh/id_rsa
-        cp /cicd-sample/known_hosts.github /root/.ssh/known_hosts
+        cp /root/.ssh/id_rsa /root/.ssh/known_hosts
     entrypoint: bash
     secretEnv:
       - SSH_KEY
