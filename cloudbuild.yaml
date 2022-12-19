@@ -24,7 +24,7 @@ steps:
  - name: gcr.io/cloud-builders/git
     args:
       - checkout
-      - $_TO_SHA
+      #- $_TO_SHA
   - name: gcr.io/cloud-builders/gcloud
     args:
       - '-c'
