@@ -1,4 +1,13 @@
 steps:
+- name: gcr.io/cloud-builders/git
+    args:
+      - clone
+      - '--recurse-submodules'
+      - 'git@github.com:Hasimk/cicd-sample'
+    volumes:
+      - name: ssh
+        path: /root/.ssh
+        
   - name: gcr.io/cloud-builders/git
     args:
       - '-c'
@@ -12,15 +21,7 @@ steps:
     volumes:
       - name: ssh
         path: /root/.ssh
-  - name: gcr.io/cloud-builders/git
-    args:
-      - clone
-      - '--recurse-submodules'
-      - 'git@github.com:Hasimk/cicd-sample'
-    volumes:
-      - name: ssh
-        path: /root/.ssh
-        
+  
  - name: gcr.io/cloud-builders/git
     args:
       - checkout
