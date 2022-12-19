@@ -1,0 +1,45 @@
+steps:
+  - name: gcr.io/cloud-builders/git
+    args:
+      - '-c'
+      - |
+        echo "$$SSH_KEY" >> /root/.ssh/id_rsa
+        chmod 400 /root/.ssh/id_rsa
+        cp known_hosts.github /root/.ssh/known_hosts
+    entrypoint: bash
+    secretEnv:
+      - SSH_KEY
+    volumes:
+      - name: ssh
+        path: /root/.ssh
+  - name: gcr.io/cloud-builders/git
+    args:
+      - clone
+      - '--recurse-submodules'
+      - 'git@github.com:Hasimk/cicd-sample'
+    volumes:
+      - name: ssh
+        path: /root/.ssh
+        
+ - name: gcr.io/cloud-builders/git
+    args:
+      - checkout
+      - $_TO_SHA
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - '-c'
+      - |
+        for dagfile in $(ls dags/*.py)
+        do
+        gcloud composer environments storage dags import \
+        --environment composer-airflow \
+        --location asia-south1 \
+        --source dags/$$dagfile
+        done
+    entrypoint: bash
+    
+    
+availableSecrets:
+  secretManager:
+    - versionName: projects/591981386330/secrets/SSHKEY/versions/latest
+      env: SSH_KEY
