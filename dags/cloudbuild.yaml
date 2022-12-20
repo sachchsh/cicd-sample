@@ -34,7 +34,7 @@ steps:
     args:
     - '-c'
     - |
-      for dagfile in $(cat composer/dags/dags-to-deploy.txt)
+      for dagfile in $(cat composer/dags/*.py)
       do
       gcloud composer environments storage dags import \
       --environment $$COMPOSER_ENV_NAME \
