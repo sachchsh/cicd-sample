@@ -25,10 +25,10 @@ steps:
     - name: 'ssh'
       path: /root/.ssh
 
-  - name: gcr.io/cloud-builders/git
-    args:
-      - checkout
-      - $_TO_SHA
+#   - name: gcr.io/cloud-builders/git
+#     args:
+#       - checkout
+#       - $_TO_SHA
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: 'bash'
     args:
