@@ -33,7 +33,7 @@ steps:
         gcloud composer environments storage dags import \
         --environment composer-airflow \
         --location asia-south1 \
-        --source dags/$$dagfile
+        --source dags/
         done
     entrypoint: bash
     
