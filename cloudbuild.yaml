@@ -25,6 +25,24 @@ steps:
     - name: 'ssh'
       path: /root/.ssh
 
+  - name: gcr.io/cloud-builders/git
+    args:
+      - checkout
+      - $_TO_SHA
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      for dagfile in $(ls dags/*.py)
+      do
+      gcloud composer environments storage dags import \
+      --environment $$COMPOSER_ENV_NAME \
+      --location asia-south1 \
+      --source composer/dags/$$dagfile
+      done
+      
+
 # [START composer_cicd_dagsync_yaml]
 
   # install dependencies
