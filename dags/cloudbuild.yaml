@@ -34,7 +34,6 @@ steps:
     args:
     - '-c'
     - |
-      source composer/environment-definitions/env-prod
       for dagfile in $(cat composer/dags/dags-to-deploy.txt)
       do
       gcloud composer environments storage dags import \
