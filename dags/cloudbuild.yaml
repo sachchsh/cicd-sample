@@ -34,12 +34,12 @@ steps:
     args:
     - '-c'
     - |
-      for dagfile in $(cat composer/dags/*.py)
+      for dagfile in $(ls dags/*.py)
       do
       gcloud composer environments storage dags import \
       --environment $$COMPOSER_ENV_NAME \
       --location asia-south1 \
-      --source composer/dags/$$dagfile
+      --source dags/$$dagfile
       done
       
 
