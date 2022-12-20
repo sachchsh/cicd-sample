@@ -24,18 +24,18 @@ steps:
     args:
       - checkout
       - $_TO_SHA
-#   - name: gcr.io/cloud-builders/gcloud
-#     args:
-#       - '-c'
-#       - |
-#         for dagfile in $(ls dags/*.py)
-#         do
-#         gcloud composer environments storage dags import \
-#         --environment composer-airflow \
-#         --location asia-south1 \
-#         --source dags/
-#         done
-#     entrypoint: bash
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - '-c'
+      - |
+        for dagfile in $(ls dags/*.py)
+        do
+        gcloud composer environments storage dags import \
+        --environment composer-airflow \
+        --location asia-south1 \
+        --source dags/
+        done
+    entrypoint: bash
     
     
 availableSecrets:
