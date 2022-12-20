@@ -37,7 +37,7 @@ steps:
       for dagfile in $(ls dags/*.py)
       do
       gcloud composer environments storage dags import \
-      --environment $$COMPOSER_ENV_NAME \
+      --environment composer-airflow-2 \
       --location asia-south1 \
       --source dags/$$dagfile
       done
