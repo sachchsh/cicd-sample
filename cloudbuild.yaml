@@ -56,7 +56,7 @@ steps:
   - |
     gcloud composer environments storage dags import \
     --environment=composer-airflow-2 \
-    --location=asia-south-1 \
+    --location=asia-south1 \
     --source=${_DAGS_DIRECTORY}
    
 availableSecrets:
