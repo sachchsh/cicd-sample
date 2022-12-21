@@ -10,12 +10,12 @@ steps:
       chmod 400 /root/.ssh/id_rsa
       ssh-keyscan -t rsa github.com > known_hosts.github
       cp known_hosts.github /root/.ssh/known_hosts
-#       cat known_hosts.github 
+# cat known_hosts.github 
     volumes:
     - name: 'ssh'
       path: /root/.ssh
   
-  # Clone the repository
+# Clone the repository
   - name: 'gcr.io/cloud-builders/git'
     args:
     - clone
@@ -25,22 +25,24 @@ steps:
     - name: 'ssh'
       path: /root/.ssh
 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2', '.' ]
+images:
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2'    
+
 # [START composer_cicd_dagsync_yaml]
 
-  # install dependencies
+# install dependencies
   - name: python
     entrypoint: pip
     args: ["install", "-r", "utils/requirements.txt", "--user"]
 
-  # run
+# run
   - name: python
     entrypoint: python
     args: ["utils/add_dags_to_composer.py", "--dags_directory=${_DAGS_DIRECTORY}", "--dags_bucket=${_DAGS_BUCKET}"]
 
 # [END composer_cicd_dagsync_yaml]
-
-
-
   
 availableSecrets:
     secretManager:
