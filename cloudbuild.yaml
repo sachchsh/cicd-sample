@@ -44,6 +44,23 @@ steps:
     args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5', '.' ]
 images:
   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5' 
+ 
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+  - '-c'
+  - >
+   docker run -i
+   -v "$(pwd)"/src/DAGS:/DAGS
+   gcr.io/$PROJECT_ID/airflow-composer:latest
+   gcloud composer environments storage dags import
+   --environment composer-airflow-2
+   --location asia-south1
+   --source dags/
+substitutions:
+ _ENV: local
+ images:
+ - 'gcr.io/$PROJECT_ID/airflow-composer' 
   
 availableSecrets:
     secretManager:
