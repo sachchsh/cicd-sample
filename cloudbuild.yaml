@@ -57,7 +57,7 @@ steps:
       gcloud composer environments storage dags import \
       --environment=composer-airflow-2 \
       --location=asia-south1 \
-      --source=utils/add_dags_to_composer.py
+      --source=gs://asia-south1-composer-airflo-004d9a01-bucket/dags/
    
 availableSecrets:
     secretManager:
