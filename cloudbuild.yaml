@@ -46,8 +46,8 @@ availableSecrets:
     - versionName: projects/591981386330/secrets/SSH_KEY/versions/latest
       env: 'SSH_KEY'
       
-#     - name: 'gcr.io/cloud-builders/docker'
-#     args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2', '.' ]
-# images:
-#   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2'  
+    - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2', '.' ]
+images:
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2'  
       
