@@ -54,7 +54,7 @@ steps:
     args:
   - '-c'
   - |
-    source Hasimk/cicd-sample
+   
     for dagfile in $(cat utils/requirements.txt) 
     do 
     gcloud composer environments storage dags import \
