@@ -27,7 +27,7 @@ steps:
 
    
 
-# [START composer_cicd_dagsync_yaml]
+# # [START composer_cicd_dagsync_yaml]
 
 # # install dependencies
 #   - name: python
@@ -39,20 +39,7 @@ steps:
 #     entrypoint: python
 #     args: ["utils/add_dags_to_composer.py", "--dags_directory=${_DAGS_DIRECTORY}", "--dags_bucket=${_DAGS_BUCKET}"]
 
-# [END composer_cicd_dagsync_yaml]
-
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-  - '-c'
-  - |
-    for entry in "${_DAG_DIRECTORY}/*" 
-    do 
-    gcloud composer environments storage dags import \
-    --environment composer-airflow-2 \
-    --location asia-south-1 \
-    --source utils/add_dags_to_composer.py \
-    done
+# # [END composer_cicd_dagsync_yaml]
 
 # # [Start Artifact registry]
 #   - name: 'gcr.io/cloud-builders/docker'
@@ -60,7 +47,21 @@ steps:
 # images:
 #   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5' 
   
-# # [End Artifact registry]
+# [End Artifact registry]
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+  - '-c'
+  - |
+    source Hasimk/cicd-sample
+    for dagfile in $(cat utils/requirements.txt) 
+    do 
+    gcloud composer environments storage dags import \
+    --environment composer-airflow-2 \
+    --location asia-south-1 \
+    --source utils/add_dags_to_composer.py\
+    done
    
   
 availableSecrets:
