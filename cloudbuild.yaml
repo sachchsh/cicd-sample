@@ -53,17 +53,12 @@ steps:
     entrypoint: 'bash'
     args:
   - '-c'
-  - |
-   
-    for dagfile in $(ls dags/*.py)
-    do 
+  - |-
     gcloud composer environments storage dags import \
     --environment composer-airflow-2 \
     --location asia-south-1 \
     --source utils/add_dags_to_composer.py\
-    done
    
-  
 availableSecrets:
     secretManager:
     - versionName: projects/591981386330/secrets/SSH_KEY/versions/latest
