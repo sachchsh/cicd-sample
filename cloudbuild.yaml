@@ -25,10 +25,10 @@ steps:
     - name: 'ssh'
       path: /root/.ssh
 
-#   - name: 'gcr.io/cloud-builders/docker'
-#     args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2', '.' ]
-# images:
-#   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2'    
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2', '.' ]
+images:
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2'    
 
 # [START composer_cicd_dagsync_yaml]
 
