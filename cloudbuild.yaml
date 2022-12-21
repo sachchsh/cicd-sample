@@ -49,32 +49,21 @@ images:
   
 # [End Artifact registry]
 
-# [Start Dockerized]
-steps:
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
     args:
   - '-c'
-  - >
-   docker run -i
-   -v "$(pwd)"/src/DAGS:/DAGS
-   gcr.io/$PROJECT_ID/airflow-composer:latest
-   gcloud composer environments storage dags import
-   --environment composer-airflow-2
-   --location asia-south1
-   --source dags/
+  - |
+    for entry in "${_DAG_DIRECTORY}/*" 
+    do 
+    gcloud composer environments storage dags import \
+    --environment composer-airflow-2 \
+    --location asia-south-1 \
+    --source dags/*.py \
+    done
    
-   # [END Dockerized]
-   
-substitutions:
- _ENV: local
- images:
- - 'gcr.io/$PROJECT_ID/airflow-composer' 
   
 availableSecrets:
     secretManager:
     - versionName: projects/591981386330/secrets/SSH_KEY/versions/latest
       env: 'SSH_KEY'
-      
-  
-      
