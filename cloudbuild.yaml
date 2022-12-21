@@ -41,14 +41,6 @@ steps:
 
 # [END composer_cicd_dagsync_yaml]
 
-# [Start Artifact registry]
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5', '.' ]
-images:
-  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5' 
-  
-# [End Artifact registry]
-
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
     args:
@@ -61,6 +53,14 @@ images:
     --location asia-south-1 \
     --source dags/*.py \
     done
+
+# [Start Artifact registry]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5', '.' ]
+images:
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5' 
+  
+# [End Artifact registry]
    
   
 availableSecrets:
