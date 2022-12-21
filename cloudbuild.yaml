@@ -41,9 +41,9 @@ steps:
 
 # [END composer_cicd_dagsync_yaml]
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2', '.' ]
+    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5', '.' ]
 images:
-  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag2' 
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5' 
   
 availableSecrets:
     secretManager:
