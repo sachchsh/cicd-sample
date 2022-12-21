@@ -53,7 +53,7 @@ steps:
     entrypoint: 'bash'
     args:
   - '-c'
-  - |-
+  - |
     gcloud composer environments storage dags import \
     --environment composer-airflow-2 \
     --location asia-south-1 \
