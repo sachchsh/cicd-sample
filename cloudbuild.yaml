@@ -21,7 +21,7 @@ steps:
     - clone
     - --recurse-submodules
     - git@github.com:Hasimk/cicd-sample.git
-    - checkout version1.1
+    - checkout version1.0
     volumes:
     - name: 'ssh'
       path: /root/.ssh
