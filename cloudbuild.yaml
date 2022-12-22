@@ -27,40 +27,40 @@ steps:
 
    
 
-# # [START composer_cicd_dagsync_yaml]
+# # # [START composer_cicd_dagsync_yaml]
 
-# install dependencies
-  - name: python
-    entrypoint: pip
-    args: ["install", "-r", "utils/requirements.txt", "--user"]
+# # install dependencies
+#   - name: python
+#     entrypoint: pip
+#     args: ["install", "-r", "utils/requirements.txt", "--user"]
 
-# run
-  - name: python
-    entrypoint: python
-    args: ["utils/add_dags_to_composer.py", "--dags_directory=${_DAGS_DIRECTORY}", "--dags_bucket=${_DAGS_BUCKET}"]
+# # run
+#   - name: python
+#     entrypoint: python
+#     args: ["utils/add_dags_to_composer.py", "--dags_directory=${_DAGS_DIRECTORY}", "--dags_bucket=${_DAGS_BUCKET}"]
 
 # [END composer_cicd_dagsync_yaml]
 
-# [Start Artifact registry]
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5', '.' ]
-images:
-  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5' 
+# # [Start Artifact registry]
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5', '.' ]
+# images:
+#   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5' 
   
-# [End Artifact registry]
+# # [End Artifact registry]
 
-#   - name: 'gcr.io/cloud-builders/gcloud'
-#     entrypoint: 'bash'
-#     args:
-#     - '-c'
-#     - |
-#       for dagfile in $(ls dags/dags-to-deploy.txt)
-#         do
-#         gcloud composer environments storage dags import \
-#         --environment composer-airflow-2 \
-#         --location asia-south1 \
-#         --source dags/$$dagfile
-#         done
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      for dagfile in $(ls dags/dags-to-deploy.txt)
+        do
+        gcloud composer environments storage dags import \
+        --environment composer-airflow-2 \
+        --location asia-south1 \
+        --source dags/$$dagfile
+        done
    
 availableSecrets:
     secretManager:
