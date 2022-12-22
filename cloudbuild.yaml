@@ -46,11 +46,7 @@ steps:
     args:
     - '-c'
     - |
-      for dagfile in $(ls dags/*.py)
-        do
-          echo $dagfile >> dags-to-deploy.txt
-        done
-      for dagfile in $(cat dags-to-deploy.txt)
+      for dagfile in $(ls dags)
         do
         gcloud composer environments storage dags import \
         --environment composer-airflow-2 \
