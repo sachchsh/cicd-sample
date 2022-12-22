@@ -27,4 +27,6 @@ COPY test-dags.cloudbuild.yaml /
 COPY dags /
 COPY utils /
 
+EXPOSE 8080
+
 
