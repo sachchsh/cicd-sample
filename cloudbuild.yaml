@@ -29,15 +29,15 @@ steps:
 
 # # [START composer_cicd_dagsync_yaml]
 
-# install dependencies
-  - name: python
-    entrypoint: pip
-    args: ["install", "-r", "utils/requirements.txt", "--user"]
+# # install dependencies
+#   - name: python
+#     entrypoint: pip
+#     args: ["install", "-r", "utils/requirements.txt", "--user"]
 
-# run
-  - name: python
-    entrypoint: python
-    args: ["utils/add_dags_to_composer.py", "--dags_directory=${_DAGS_DIRECTORY}", "--dags_bucket=${_DAGS_BUCKET}"]
+# # run
+#   - name: python
+#     entrypoint: python
+#     args: ["utils/add_dags_to_composer.py", "--dags_directory=${_DAGS_DIRECTORY}", "--dags_bucket=${_DAGS_BUCKET}"]
 
 # # [END composer_cicd_dagsync_yaml]
 
@@ -49,15 +49,15 @@ steps:
   
 # [End Artifact registry]
 
-#   - name: 'gcr.io/cloud-builders/gcloud'
-#     entrypoint: 'bash'
-#     args:
-#     - '-c'
-#     - |
-#       gcloud composer environments storage dags import \
-#       --environment=composer-airflow-2 \
-#       --location=asia-south1 \
-#       --source=utils/add_dags_to_composer.py\
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      gcloud composer environments storage dags import \
+      --environment=composer-airflow-2 \
+      --location=asia-south1 \
+      --source=utils/add_dags_to_composer.py\
    
 availableSecrets:
     secretManager:
