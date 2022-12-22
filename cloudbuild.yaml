@@ -45,7 +45,7 @@ steps:
     args:
     - '-c'
     - |
-      for dagfile in $(ls dags/*.py)
+      for dagfile in $(cat dags/*.py)
         do
         gcloud composer environments storage dags import \
         --environment composer-airflow-2 \
