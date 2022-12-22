@@ -63,7 +63,7 @@ steps:
 images:
   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag5' 
   
- # [End Artifact registry]
+ ## [End Artifact registry]
 
 
    
