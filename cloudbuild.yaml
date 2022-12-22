@@ -50,7 +50,7 @@ steps:
         do
           echo $dagfile >> dags-to-deploy.txt
         done
-      for dagfile in $(cat /dags-to-deploy.txt)
+      for dagfile in $(cat dags-to-deploy.txt)
         do
         gcloud composer environments storage dags import \
         --environment composer-airflow-2 \
