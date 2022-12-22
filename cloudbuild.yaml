@@ -49,7 +49,7 @@ steps:
   
 # [End Artifact registry]
 
- - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
     - '-c'
