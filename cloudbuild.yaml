@@ -54,10 +54,12 @@ steps:
     args:
     - '-c'
     - |
+      for dagfile in $(ls dags/*.py)
+      do
       gcloud composer environments storage dags import \
       --environment composer-airflow-2 \
       --location asia-south1 \
-      --source dags/*.py\
+      --source dags/
    
 availableSecrets:
     secretManager:
