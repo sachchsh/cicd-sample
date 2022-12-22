@@ -29,10 +29,10 @@ steps:
 
 # # [START composer_cicd_dagsync_yaml]
 
-# install dependencies
-  - name: python
-    entrypoint: pip
-    args: ["install", "-r", "utils/requirements.txt", "--user"]
+# # install dependencies
+#   - name: python
+#     entrypoint: pip
+#     args: ["install", "-r", "utils/requirements.txt", "--user"]
 
 # # run
 #   - name: python
