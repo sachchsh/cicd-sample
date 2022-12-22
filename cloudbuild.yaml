@@ -20,8 +20,8 @@ steps:
     args:
     - clone
     - --recurse-submodules
-    - -b version1.1
     - git@github.com:Hasimk/cicd-sample.git
+    - checkout version1.1
     volumes:
     - name: 'ssh'
       path: /root/.ssh
