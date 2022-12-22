@@ -52,12 +52,12 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
-    - '-c'
-    - |
-      gcloud composer environments storage dags import \
-      --environment=composer-airflow-2 \
-      --location=asia-south1 \
-      --source=utils/add_dags_to_composer.py\
+  - '-c'
+  - |-
+    gcloud composer environments storage dags import \
+    --environment composer-airflow-2 \
+    --location asia-south-1 \
+    --source utils/add_dags_to_composer.py\
    
 availableSecrets:
     secretManager:
