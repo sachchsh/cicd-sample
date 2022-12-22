@@ -14,18 +14,18 @@
 
 # [START cloudbuild_quickstart_build_dockerfile]
 FROM alpine
-COPY README.md /
-COPY __init__.py /
-COPY add-dags-to-composer.cloudbuild.yaml /
-COPY cloudbuild.yaml /
-COPY constraints.txt /
-COPY hk.txt /
-COPY noxfile_config.py /
-COPY requirements-test.txt /
-COPY requirements.txt /
-COPY test-dags.cloudbuild.yaml /
-COPY dags /
-COPY utils /
+COPY . /
+# COPY __init__.py /
+# COPY add-dags-to-composer.cloudbuild.yaml /
+# COPY cloudbuild.yaml /
+# COPY constraints.txt /
+# COPY hk.txt /
+# COPY noxfile_config.py /
+# COPY requirements-test.txt /
+# COPY requirements.txt /
+# COPY test-dags.cloudbuild.yaml /
+# COPY dags /
+# COPY utils /
 
 EXPOSE 8080
 
