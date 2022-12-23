@@ -28,32 +28,11 @@ steps:
     - clone
     - --recurse-submodules
     - git@github.com:Hasimk/cicd-sample.git
-    - checkout version1.0
     volumes:
     - name: 'ssh'
       path: /root/.ssh
- # - Unit tests.
-  # [START unit-test]
-  - name: 'gcr.io/${PROJECT_ID}/quickstart-image:tag6'
-    waitFor: ['quickstart-image']
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        pytest tests/unit
-#         if [ "${_COMPOSER_ENV_NAME}" = "${_DEV_ENV_NAME}" ]
-#         then
-      
-#         else
-#           echo "***************************** unit-test *******************************"
-#           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
-#           echo "***************************************************************************"
-#         fi
-    id: "unit-test"
-  # [END unit-test]
 
-   
-
+  
 # # # [START composer_cicd_dagsync_yaml]
 
 # # install dependencies
@@ -86,8 +65,6 @@ images:
   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6' 
   
  ## [End Artifact registry]
-
-
 
    
 availableSecrets:
