@@ -35,7 +35,7 @@ steps:
  # - Unit tests.
   # [START unit-test]
   - name: 'gcr.io/${PROJECT_ID}/quickstart-image:tag6'
-    waitFor: ['${_COMPOSER_ENV_NAME}']
+    waitFor: ['composer-airflow-2']
     entrypoint: 'bash'
     args:
       - '-c'
