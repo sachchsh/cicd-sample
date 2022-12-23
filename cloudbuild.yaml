@@ -2,6 +2,9 @@
 substitutions:
   _COMPOSER_REGION: asia-south1
   _COMPOSER_ENV_NAME: composer-airflow-2
+  
+
+  
 # Access the id_github file from Secret Manager, and setup SSH
 steps:
   - name: 'gcr.io/cloud-builders/git'
@@ -71,3 +74,22 @@ availableSecrets:
     secretManager:
     - versionName: projects/591981386330/secrets/SSH_KEY/versions/latest
       env: 'SSH_KEY'
+      
+# - Unit tests.
+  # [START unit-test]
+  - name: 'gcr.io/${PROJECT_ID}/quickstart-image:tag6'
+    waitFor: ['${_COMPOSER_ENV_NAME}']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+#         if [ "${_COMPOSER_ENV_NAME}" = "${_DEV_ENV_NAME}" ]
+#         then
+        pytest tests/unit
+#         else
+#           echo "***************************** unit-test *******************************"
+#           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
+#           echo "***************************************************************************"
+#         fi
+    id: "unit-test"
+  # [END unit-test]
