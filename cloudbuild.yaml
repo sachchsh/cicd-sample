@@ -32,6 +32,24 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
+ # - Unit tests.
+  # [START unit-test]
+  - name: 'gcr.io/${PROJECT_ID}/quickstart-image:tag6'
+    waitFor: ['${_COMPOSER_ENV_NAME}']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+#         if [ "${_COMPOSER_ENV_NAME}" = "${_DEV_ENV_NAME}" ]
+#         then
+        pytest tests/unit
+#         else
+#           echo "***************************** unit-test *******************************"
+#           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
+#           echo "***************************************************************************"
+#         fi
+    id: "unit-test"
+  # [END unit-test]
 
    
 
@@ -68,24 +86,7 @@ images:
   
  ## [End Artifact registry]
 
- # - Unit tests.
-  # [START unit-test]
-  - name: 'gcr.io/${PROJECT_ID}/quickstart-image:tag6'
-    waitFor: ['${_COMPOSER_ENV_NAME}']
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-#         if [ "${_COMPOSER_ENV_NAME}" = "${_DEV_ENV_NAME}" ]
-#         then
-        pytest tests/unit
-#         else
-#           echo "***************************** unit-test *******************************"
-#           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
-#           echo "***************************************************************************"
-#         fi
-    id: "unit-test"
-  # [END unit-test]
+
 
    
 availableSecrets:
