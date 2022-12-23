@@ -32,25 +32,25 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
- # - Unit tests.
-  # [START unit-test]
-  - name: 'gcr.io/${PROJECT_ID}/quickstart-image:tag6'
-    waitFor: ['composer-airflow-2']
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        pytest tests/unit
-#         if [ "${_COMPOSER_ENV_NAME}" = "${_DEV_ENV_NAME}" ]
-#         then
+#  # - Unit tests.
+#   # [START unit-test]
+#   - name: 'gcr.io/${PROJECT_ID}/quickstart-image:tag6'
+#     waitFor: ['composer-airflow-2']
+#     entrypoint: 'bash'
+#     args:
+#       - '-c'
+#       - |
+#         pytest tests/unit
+# #         if [ "${_COMPOSER_ENV_NAME}" = "${_DEV_ENV_NAME}" ]
+# #         then
       
-#         else
-#           echo "***************************** unit-test *******************************"
-#           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
-#           echo "***************************************************************************"
-#         fi
-    id: "unit-test"
-  # [END unit-test]
+# #         else
+# #           echo "***************************** unit-test *******************************"
+# #           echo "Environment '"$_COMPOSER_ENV_NAME"' does not require this step ... skipping"
+# #           echo "***************************************************************************"
+# #         fi
+#     id: "unit-test"
+#   # [END unit-test]
 
    
 
@@ -81,7 +81,7 @@ steps:
         done
  # [Start Artifact registry]
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6', '.' ]
+    args: [ 'build', '-t', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6', '.' ]
 images:
   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6' 
   
