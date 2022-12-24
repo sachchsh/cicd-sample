@@ -63,7 +63,7 @@ steps:
     args: [ 'build', '-t', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6', '.' ]
   
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/myimage']
+    args: ['push', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:myimage']
   
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['run', 'deploy', 'quickstart-image', '--image', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6' , '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']  
