@@ -65,20 +65,7 @@ images:
   - '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6' 
   
  ## [End Artifact registry]
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-    - 'run'
-    - 'deploy'
-    - 'cloudrunservice'
-    - '--image'
-    - '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6' 
-    - '--region'
-    - '$_COMPOSER_REGION'
-    - '--platform'
-    - 'managed'
-    - '--allow-unauthenticated'
-# [END cloudbuild_quickstart_deploy]
-   
+  
 availableSecrets:
     secretManager:
     - versionName: projects/591981386330/secrets/SSH_KEY/versions/latest
