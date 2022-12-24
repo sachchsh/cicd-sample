@@ -66,6 +66,20 @@ images:
   
  ## [End Artifact registry]
 
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - 'cloudrunservice'
+  - '--image'
+  - 'us-docker.pkg.dev/cloudrun/container/hello'
+  - '--region'
+  - '$_COMPOSER_REGION'
+  - '--platform'
+  - 'managed'
+  - '--allow-unauthenticated'
+# [END cloudbuild_quickstart_deploy]
    
 availableSecrets:
     secretManager:
