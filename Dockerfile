@@ -78,7 +78,7 @@ COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
 COPY dags /
 
 RUN chown -R airflow: ${AIRFLOW_USER_HOME}
-RUN chmod u+x /entrypoint.sh
+RUN ["chmod", "+x", "/entrypoint.sh"]
 
 EXPOSE 8080 5555 8793
 
