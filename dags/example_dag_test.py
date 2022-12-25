@@ -12,21 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.10
+from airflow import models
+import internal_unit_testing
+import pytest
 
-# Allow statements and log messages to immediately appear in the Cloud Run logs
-ENV PYTHONUNBUFFERED True
+# user should substitute their project ID
+PROJECT_ID = 'your-project-id'
 
-COPY requirements.txt ./
-COPY requirements-composer.txt ./
-COPY requirements-test.txt ./
 
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir -r requirements-test.txt
-RUN pip install --no-cache-dir -r requirements-composer.txt
+@pytest.fixture(autouse=True, scope="function")
+# The fixture `airflow_database` lives in composer/conftest.py.
+def set_variables(airflow_database):
+    models.Variable.set('gcp_project', PROJECT_ID)
+    yield
+    models.Variable.delete('gcp_project')
 
-#copy dag code to container image
-ENV DAGS /dags
-WORKDIR $DAGS
-COPY . ./
-CMD ["pytest", "-s", "dags/example_dag_test.py"]
+
+def test_dag_import():
+    from . import example_dag
+    internal_unit_testing.assert_has_valid_dag(example_dag)
