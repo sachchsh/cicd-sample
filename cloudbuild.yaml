@@ -36,7 +36,7 @@ steps:
 # # install dependencies
   - name: python
     entrypoint: pip
-    args: ["install", "-r", "utils/requirements.txt", "--user"]
+    args: ["install", "-r", "requirements.txt", "--user"]
 
 # # run
 # - name: python
