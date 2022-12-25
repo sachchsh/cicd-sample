@@ -59,6 +59,10 @@ RUN set -ex \
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
+    && pip install pip install SQLAlchemy==1.3.15 \
+    && pip install Flask-SQLAlchemy==2.4.4 \
+    && pip install WTForms==2.3.3 \
+    && pip install markupsafe==2.0.1\
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && pip install 'redis==3.2' \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
@@ -74,11 +78,10 @@ RUN set -ex \
         /usr/share/doc-base
 
 COPY script/entrypoint.sh /entrypoint.sh
+COPY ./dags ${AIRFLOW_USER_HOME}/dags
 COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
-COPY dags /
 
 RUN chown -R airflow: ${AIRFLOW_USER_HOME}
-RUN ["chmod", "+x", "/entrypoint.sh"]
 
 EXPOSE 8080 5555 8793
 
