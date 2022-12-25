@@ -17,13 +17,13 @@ FROM python:3.10
 # Allow statements and log messages to immediately appear in the Cloud Run logs
 ENV PYTHONUNBUFFERED True
 
-COPY requirements.txt ./
-COPY requirements-composer.txt ./
-COPY requirements-test.txt ./
+#COPY requirements.txt ./
+#COPY requirements-composer.txt ./
+#COPY requirements-test.txt ./
 
-RUN pip install --no-cache-dir -r requirements.txt
+#RUN pip install --no-cache-dir -r requirements.txt
 #RUN pip install --no-cache-dir -r requirements-test.txt
-RUN pip install --no-cache-dir -r requirements-composer.txt
+#RUN pip install --no-cache-dir -r requirements-composer.txt
 
 #copy dag code to container image
 ENV DAGS /dags
