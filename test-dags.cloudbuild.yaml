@@ -11,21 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# [START composer_cicd_unittest_yaml]
 
 steps:
-  # install dependencies
-  - name: python:3.8-slim
-    entrypoint: pip
-    args: ["install", "-r", "requirements.txt", "-c", "constraints.txt", "--user"]
-  
-  - name: python:3.8-slim
-    entrypoint: pip
-    args: ["install", "-r", "requirements-test.txt", "--user"]
-
-  # run in python 3.8 which is latest version in Cloud Composer
-  - name: python:3.8-slim
-    entrypoint: python3.8
-    args: ["-m", "pytest", "-s", "dags/"]
-
-# [END composer_cicd_unittest_yaml]
+  # build the docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/${PROJECT_ID}/cicd:${SHORT_SHA}', '.'] # tag docker image with commit sha
+    id: 'docker build'
+  # run the dag tests
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['run', 'gcr.io/${PROJECT_ID}/cicd:${SHORT_SHA}']
+    id: 'test-dags'

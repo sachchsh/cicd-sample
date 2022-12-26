@@ -57,29 +57,17 @@ steps:
         --source dags/$$dagfile
         done
 # [Start Artifact registry]
-
-
-#   - name: 'gcr.io/cloud-builders/docker'
-#     args: [ 'build', '-t', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6', '.' ]
-  
-#   - name: 'gcr.io/cloud-builders/docker'
-#     args: ['push', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6']
-  
-#   - name: 'gcr.io/cloud-builders/gcloud'
-#     args: ['run', 'deploy', 'quickstart-image', '--image', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' , --port=8080 , '--region', '$_COMPOSER_REGION', --memory=1G, '--platform', 'managed', '--allow-unauthenticated']  
-  
-# images:
-#   - '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' 
-
-
-  # Step 1: Pull the image from Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['pull', 'gcr.io/$PROJECT_ID/quickstart-image:$BUILD_ID']
-
-  # Step 2: Push the image to Cloud Composer
+    args: [ 'build', '-t', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6', '.' ]
+  
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/quickstart-image:$BUILD_ID']
-    env: ['CLOUDSDK_COMPOSER_MANAGED_VMs=true']
+    args: ['push', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6']
+  
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'quickstart-image', '--image', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' , --port=8080 , '--region', '$_COMPOSER_REGION', --memory=1G, '--platform', 'managed', '--allow-unauthenticated']  
+  
+images:
+  - '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' 
   
  ## [End Artifact registry]
   
