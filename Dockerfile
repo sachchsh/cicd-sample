@@ -78,7 +78,7 @@ RUN set -ex \
         /usr/share/doc-base
 
 COPY script/entrypoint.sh /entrypoint.sh
-COPY ./dags ${AIRFLOW_USER_HOME}/dags
+COPY ./docdags ${AIRFLOW_USER_HOME}/dags
 COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
 
 RUN chown -R airflow: ${AIRFLOW_USER_HOME}
