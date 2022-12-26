@@ -31,16 +31,16 @@ steps:
       path: /root/.ssh
 
 # install dependencies
-  - name: python:3.8-slim
+  - name: python:3.10
     entrypoint: pip
     args: ["install", "-r", "requirements.txt", "-c", "constraints.txt", "--user"]
 
-  - name: python:3.8-slim
+  - name: python:3.10
     entrypoint: pip
     args: ["install", "-r", "requirements-test.txt", "--user"]
 
   # run in python 3.8 which is latest version in Cloud Composer
-  - name: python:3.8-slim
+  - name: python:3.10
     entrypoint: python3.8
     args: ["-m", "pytest", "-s", "dags/"]
 
