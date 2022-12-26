@@ -7,7 +7,7 @@ substitutions:
 steps:
   # Step 1: Pull the image from Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['pull', 'asia-south1-docker.pkg.dev/fg-dev-host/hasim-airflow/quickstart-image:tag6']
+    args: ['pull', 'gcr.io/$PROJECT_ID/quickstart-image:tag6']
     
   
 
