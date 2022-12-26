@@ -1,18 +1,22 @@
-# - Airflow Env variables.
+---
 substitutions:
   _COMPOSER_REGION: asia-south1
   _COMPOSER_ENV_NAME: arflow-hasim
-  
 steps:
-  # Step 1: Pull the image from Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['pull', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6']
-
-# Step 2: Push the image to Cloud Composer
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6']
-    env: ['CLOUDSDK_COMPOSER_MANAGED_VMs=true']
-    
-    gcloud composer environments update <arflow-hasim> \
-  --location=asia-south1 \
-  --image-version=quickstart-image:tag6
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - pull
+      - $_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - $_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6
+    env:
+      - CLOUDSDK_COMPOSER_MANAGED_VMs=true
+      
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gcloud composer environments update airflow-hasim --location=asia-south1  --image-version=quickstart-image:tag6
