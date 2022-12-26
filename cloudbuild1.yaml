@@ -19,4 +19,4 @@ steps:
     args:
       - -c
       - |
-        gcloud composer environments update airflow-hasim --location=asia-south1  --image-version=gcr.io/$PROJECT_ID/quickstart-image:tag6
+        gcloud composer environments update airflow-hasim $_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6
