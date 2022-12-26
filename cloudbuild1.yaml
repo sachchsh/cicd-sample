@@ -19,4 +19,4 @@ steps:
     args:
       - -c
       - |
-        gcloud composer environments update airflow-hasim --location=asia-south1  --image-version=quickstart-image
+        gcloud composer environments update airflow-hasim --location=asia-south1  --image-version=quickstart-image:tag6
