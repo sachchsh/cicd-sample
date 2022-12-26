@@ -1,7 +1,7 @@
 # - Airflow Env variables.
 substitutions:
   _COMPOSER_REGION: asia-south1
-  _COMPOSER_ENV_NAME: airflow-demo
+  _COMPOSER_ENV_NAME: arflow-hasim
   
 # Access the id_github file from Secret Manager, and setup SSH
 steps:
@@ -61,13 +61,13 @@ steps:
     args: [ 'build', '-t', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6', '.' ]
   
 #        - name: 'gcr.io/cloud-builders/docker'
-#       args: ['push', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6']
+#       args: ['push', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6']
   
 #       - name: 'gcr.io/cloud-builders/gcloud'
-#        args: ['run', 'deploy', 'quickstart-image', '--image', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6' , --port=8080 , '--region', '$_COMPOSER_REGION', --memory=1G, '--platform', 'managed', '--allow-unauthenticated']  
+#        args: ['run', 'deploy', 'quickstart-image', '--image', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' , --port=8080 , '--region', '$_COMPOSER_REGION', --memory=1G, '--platform', 'managed', '--allow-unauthenticated']  
   
 images:
-  - '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/quickstart-image:tag6' 
+  - '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' 
   
  ## [End Artifact registry]
   
