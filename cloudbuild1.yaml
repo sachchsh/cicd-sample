@@ -1,0 +1,23 @@
+# - Airflow Env variables.
+substitutions:
+  _COMPOSER_REGION: asia-south1
+  _COMPOSER_ENV_NAME: arflow-hasim
+  
+
+steps:
+  # Step 1: Pull the image from Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['pull', 'gcr.io/$PROJECT_ID/quickstart-image:tag6:$BUILD_ID']
+
+#   # Step 2: Push the image to Cloud Composer
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: ['push', 'gcr.io/$PROJECT_ID/quickstart-image:tag6:$BUILD_ID']
+#     env: ['CLOUDSDK_COMPOSER_MANAGED_VMs=true']
+  
+ ## [End Artifact registry]
+  
+availableSecrets:
+    secretManager:
+    - versionName: projects/591981386330/secrets/SSH_KEY/versions/latest
+      env: 'SSH_KEY'
+      
