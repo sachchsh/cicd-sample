@@ -1,7 +1,7 @@
 # - Airflow Env variables.
 substitutions:
   _COMPOSER_REGION: asia-south1
-  _COMPOSER_ENV_NAME: composer-airflow-2
+  _COMPOSER_ENV_NAME: airflow-demo
   
 # Access the id_github file from Secret Manager, and setup SSH
 steps:
