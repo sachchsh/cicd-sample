@@ -1,1 +1,10 @@
 
+steps:
+  # Step 1: Pull the image from Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['pull', 'gcr.io/$PROJECT_ID/my-image:$BUILD_ID']
+
+#   # Step 2: Push the image to Cloud Composer
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: ['push', 'gcr.io/$PROJECT_ID/my-image:$BUILD_ID']
+#     env: ['CLOUDSDK_COMPOSER_MANAGED_VMs=true']
