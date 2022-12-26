@@ -7,11 +7,11 @@ substitutions:
 steps:
   # Step 1: Pull the image from Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['pull', 'gcr.io/$PROJECT_ID/quickstart-image:tag6:$BUILD_ID']
+    args: ['pull', 'gcr.io/$PROJECT_ID/quickstart-image:tag6']
 
 #   # Step 2: Push the image to Cloud Composer
 #   - name: 'gcr.io/cloud-builders/docker'
-#     args: ['push', 'gcr.io/$PROJECT_ID/quickstart-image:tag6:$BUILD_ID']
+#     args: ['push', 'gcr.io/$PROJECT_ID/quickstart-image:tag6']
 #     env: ['CLOUDSDK_COMPOSER_MANAGED_VMs=true']
   
  ## [End Artifact registry]
