@@ -12,3 +12,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6']
     env: ['CLOUDSDK_COMPOSER_MANAGED_VMs=true']
+    
+    gcloud composer environments update <arflow-hasim> \
+  --location=asia-south1 \
+  --image-version=quickstart-image:tag6
