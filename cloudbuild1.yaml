@@ -6,7 +6,7 @@ substitutions:
 steps:
   # Step 1: Pull the image from Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['pull', 'gcr.io/$PROJECT_ID/my-image:$BUILD_ID']
+    args: ['pull', '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6']
 
 #   # Step 2: Push the image to Cloud Composer
 #   - name: 'gcr.io/cloud-builders/docker'
