@@ -1,4 +1,8 @@
-
+# - Airflow Env variables.
+substitutions:
+  _COMPOSER_REGION: asia-south1
+  _COMPOSER_ENV_NAME: arflow-hasim
+  
 steps:
   # Step 1: Pull the image from Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
