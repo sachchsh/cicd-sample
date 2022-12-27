@@ -28,7 +28,6 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
-steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'pull','asia-south1-docker.pkg.dev/fg-dev-host/hasim-airflow/quickstart-image:tag6' ]']
   
