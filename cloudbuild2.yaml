@@ -31,28 +31,15 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'pull','asia-south1-docker.pkg.dev/fg-dev-host/hasim-airflow/quickstart-image:tag6']
   
-  # Set the environment variable for the Docker image
-  #- name: 'gcr.io/cloud-builders/gcloud'
-  # args: ['composer', 'environments', 'variables', 'create', 'hasim-airflow', '--location=asia-south1', '--environment-variable', 'DOCKER_IMAGE_URI=gcr.io/fg-dev-host/hasim-airflow/quickstart-image:tag6']
-
-  # Update the DAGs in the environment
-  #- name: 'gcr.io/cloud-builders/gcloud'
-  #  args: ['composer', 'environments', 'update', ' hasim-airflow', '--location=asia-south1', '--update-dags']
-    
+   #Set the environment variable for the Docker image
   - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-    - '-c'
-    - |
-      for dagfile in $(ls dags)
-        do
-        gcloud composer environments storage dags import \
-        --environment $_COMPOSER_ENV_NAME \
-        --location $_COMPOSER_REGION \
-        --source dags/$$dagfile
-        done
-images:
-  - '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' 
+    args: ['composer', 'environments', 'variables', 'create', 'hasim-airflow', '--location=asia-south1', '--environment-variable', 'DOCKER_IMAGE_URI=gcr.io/fg-dev-host/hasim-airflow/quickstart-image:tag6']
+
+   #Update the DAGs in the environment
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['composer', 'environments', 'update', ' hasim-airflow', '--location=asia-south1', '--update-dags']
+    
+  
   
  ## [End Artifact registry]
   
