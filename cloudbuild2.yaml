@@ -47,3 +47,4 @@ availableSecrets:
     secretManager:
     - versionName: projects/591981386330/secrets/SSH_KEY/versions/latest
       env: 'SSH_KEY'
+
