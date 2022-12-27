@@ -29,7 +29,7 @@ steps:
     - name: 'ssh'
       path: /root/.ssh
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'pull','asia-south1-docker.pkg.dev/fg-dev-host/hasim-airflow/quickstart-image:tag6' ]']
+    args: [ 'pull','asia-south1-docker.pkg.dev/fg-dev-host/hasim-airflow/quickstart-image:tag6']
   
   # Set the environment variable for the Docker image
   - name: 'gcr.io/cloud-builders/gcloud'
