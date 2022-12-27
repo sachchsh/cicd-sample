@@ -1,9 +1,8 @@
 steps:
-  # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'pull','asia-south1-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' ]']
-  # Set the environment variable for the Docker image
   
+  # Set the environment variable for the Docker image
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['composer', 'environments', 'variables', 'create', 'hasim-airflow', '--location=asia-south1', '--environment-variable', 'DOCKER_IMAGE_URI=gcr.io/$PROJECT_ID/hasim-airflow/quickstart-image:tag6']
 
