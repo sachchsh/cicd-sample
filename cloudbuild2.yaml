@@ -38,6 +38,19 @@ steps:
   # Update the DAGs in the environment
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['composer', 'environments', 'update', ' hasim-airflow', '--location=asia-south1', '--update-dags']
+    
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      for dagfile in $(ls dags)
+        do
+        gcloud composer environments storage dags import \
+        --environment $_COMPOSER_ENV_NAME \
+        --location $_COMPOSER_REGION \
+        --source dags/$$dagfile
+        done
 images:
   - '$_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6' 
   
