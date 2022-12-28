@@ -1,0 +1,22 @@
+---
+substitutions:
+  _COMPOSER_REGION: asia-south1
+  _COMPOSER_ENV_NAME: arflow-hasim
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - pull
+      - $_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - $_COMPOSER_REGION-docker.pkg.dev/$PROJECT_ID/hasim-airflow/quickstart-image:tag6
+    env:
+      - CLOUDSDK_COMPOSER_MANAGED_VMs=true
+      
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gcloud composer environments update  hasim-airflow --location=asia-south1  --image-version=quickstart-image:tag6
