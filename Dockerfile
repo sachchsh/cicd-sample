@@ -21,7 +21,7 @@ COPY constraints.txt /
 COPY requirements-test.txt /
 COPY requirements.txt /
 COPY dags /
-COPY utils /
+
 
 
 
