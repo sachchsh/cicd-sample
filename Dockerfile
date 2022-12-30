@@ -16,14 +16,12 @@
 FROM alpine
 COPY README.md /
 COPY __init__.py /
-COPY add-dags-to-composer.cloudbuild.yaml /
 COPY cloudbuild.yaml /
 COPY constraints.txt /
 COPY hk.txt /
 COPY noxfile_config.py /
 COPY requirements-test.txt /
 COPY requirements.txt /
-COPY test-dags.cloudbuild.yaml /
 COPY dags /
 COPY utils /
 
