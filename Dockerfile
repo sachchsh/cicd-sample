@@ -18,8 +18,6 @@ COPY README.md /
 COPY __init__.py /
 COPY cloudbuild.yaml /
 COPY constraints.txt /
-COPY hk.txt /
-COPY noxfile_config.py /
 COPY requirements-test.txt /
 COPY requirements.txt /
 COPY dags /
