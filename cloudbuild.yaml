@@ -78,6 +78,13 @@ steps:
 # Push the image to GCR
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/fg-dev-host/my-image:v1.0']
+    
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['save', 'gcr.io/my-project/my-image:latest', '-o', '/image.tar']
+  - name: 'gcr.io/cloud-builders/bash'
+    args: ['tar', '-xf', '/image.tar', '-C', '/']
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', '/workspace/DAGS/*', 'gs://asia-south1-arflow-hasim-79c2d444-bucket/dags']
   
 availableSecrets:
     secretManager:
