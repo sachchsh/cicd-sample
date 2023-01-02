@@ -80,7 +80,7 @@ steps:
     args: ['push', 'gcr.io/fg-dev-host/my-image:v1.0']
     
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['save', 'gcr.io/fg-dev-host/my-image:latest', '-o', '/image.tar']
+    args: ['save', 'gcr.io/fg-dev-host/my-image:v1.0', '-o', '/image.tar']
   - name: 'gcr.io/cloud-builders/bash'
     args: ['tar', '-xf', '/image.tar', '-C', '/']
   - name: 'gcr.io/cloud-builders/gsutil'
